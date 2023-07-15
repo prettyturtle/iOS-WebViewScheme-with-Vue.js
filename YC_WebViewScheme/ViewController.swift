@@ -19,14 +19,12 @@ final class ViewController: UIViewController {
         $0.add(self, name: webViewBridgeName)
     }
     private lazy var webViewConfiguration = WKWebViewConfiguration().then {
-        $0.preferences.javaScriptEnabled = true
         $0.mediaTypesRequiringUserActionForPlayback = []
         $0.allowsInlineMediaPlayback = true
         $0.setURLSchemeHandler(webViewScheme, forURLScheme: WebViewScheme.scheme)
         $0.userContentController = userController
     }
     private lazy var webView = WKWebView(frame: .zero, configuration: webViewConfiguration).then {
-        $0.customUserAgent = "Mozilla/5.0 (iPad; CPU iPhone OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)"
         $0.uiDelegate = self
     }
     
@@ -120,9 +118,6 @@ extension ViewController: WKScriptMessageHandler {
             
             if msg == "didTapDownloadVideoButton" {
                 let videoURL1 = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-//                let videoURL1 = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-//                let videoURL1 = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-//                let videoURL1 = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
                 
                 didTapDownloadVideoButton(videoURL1)
             }
